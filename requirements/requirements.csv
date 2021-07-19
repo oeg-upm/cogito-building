@@ -1,0 +1,12 @@
+Identifier (domain+id);Component;"Competency Question /
+ Natural language sentence (fact)";Answer;Status (Proposed, Accepted, Rejected, Pending, Deprecated)
+bldg-1;PMS;A building contains a zone;;
+bldg-2;PMS;A building has a space;;
+bldg-3;PMS;A zone has a space;;
+bldg-4;PMS;A component has quality information;;
+bldg-5;PMS;A building element has a KPI;;
+bldg-6;PMS;A building element  is related to a property;;
+bldg-7;PMS;Each building element is a spatial thing ;;
+bldg-8;PMS;The material of a building is related to a property;;
+bldg-10;WODM;A building is composed by elements;;
+bldg-11;WODM;Each element has a location;;
