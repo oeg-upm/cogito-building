@@ -1,4 +1,4 @@
-Id,Requirement,Category,Test
+Id,Requirement,Component,Test
 CONS-TEST-1,CONS-1,PMS,Construction containsZone Zone
 CONS-TEST-2,CONS-2,"PMS, WODM",Construction hasSpace Space
 CONS-TEST-3,CONS-3,PMS,Zone hasSpace Space
