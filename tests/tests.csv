@@ -1,0 +1,8 @@
+Id,Requirement,Category,Test
+CONS-TEST-1,CONS-1,PMS,Construction containsZone Zone
+CONS-TEST-2,CONS-2,"PMS,WODM",Construction hasSpace Space
+CONS-TEST-3,CONS-3,PMS,Zone hasSpace Space
+CONS-TEST-4,CONS-4,PMS,Element hasQualityInformation QualityInformation
+CONS-TEST-5,CONS-5,PMS,Element subClassOf SpatialThing
+CONS-TEST-6,CONS-6,WODM,Construction hasElement Element
+CONS-TEST-7,CONS-7,WODM,Element location Point
