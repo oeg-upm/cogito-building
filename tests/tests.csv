@@ -1,6 +1,6 @@
 Id,Requirement,Category,Test
 CONS-TEST-1,CONS-1,PMS,Construction containsZone Zone
-CONS-TEST-2,CONS-2,"PMS,WODM",Construction hasSpace Space
+CONS-TEST-2,CONS-2,"PMS, WODM",Construction hasSpace Space
 CONS-TEST-3,CONS-3,PMS,Zone hasSpace Space
 CONS-TEST-4,CONS-4,PMS,Element hasQualityInformation QualityInformation
 CONS-TEST-5,CONS-5,PMS,Element subClassOf SpatialThing
