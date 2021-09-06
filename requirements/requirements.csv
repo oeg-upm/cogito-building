@@ -1,4 +1,4 @@
-Identifier (domain+id);Component;Competency Question / Assertion;Answer;Status (Proposed, Accepted, Rejected, Pending, Deprecated)
+Identifier;Component;Competency Question/Assertion;Answer;Status
 cons-1;PMS;A construction can contain one or several zones;;
 cons-2;PMS;A construction can have one or several spaces;;
 cons-3;PMS;A zone can have one or several spaces;;
