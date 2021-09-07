@@ -1,21 +1,24 @@
-@prefix : <https://cogito.iot.linkeddata.es/def/core#> .
+@prefix : <https://cogito.iot.linkeddata.es/def/construction#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix bot: <https://w3id.org/bot#> .
 @prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix core: <https://cogito.iot.linkeddata.es/def/core#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix const: <https://cogito.iot.linkeddata.es/def/construction#> .
 @prefix saref: <https://saref.etsi.org/core#> .
-@base <https://cogito.iot.linkeddata.es/def/core#> .
+@prefix s4city: <https://saref.etsi.org/saref4city#> .
+@prefix process: <https://cogito.iot.linkeddata.es/def/process#> .
+@base <https://cogito.iot.linkeddata.es/def/construction#> .
 
-<https://cogito.iot.linkeddata.es/def/core#> rdf:type owl:Ontology ;
+<https://cogito.iot.linkeddata.es/def/construction#> rdf:type owl:Ontology ;
                                               dc:creator "Alba Fernández Izquierdo" ,
                                                          "Raúl García Castro" ,
                                                          "Socorro  Bernardos Galindo" ;
-                                              dc:description "The COGITO Building ontology aims at modelling the building data exchanges in the COGITO project." ;
-                                              dc:title "The COGITO Building Ontology" ;
+                                              dc:description "The COGITO Construction ontology aims at modelling the construction domain." ;
+                                              dc:title "Construction Ontology" ;
                                               owl:versionInfo "0.0.1" .
 
 #################################################################
@@ -38,83 +41,77 @@ dc:title rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
-###  https://cogito.iot.linkeddata.es/def/core#hasQualityInformation
-core:hasQualityInformation rdf:type owl:ObjectProperty ;
-                           rdfs:range core:QualityInformation ;
-                           rdfs:label "has quality information" .
+###  https://cogito.iot.linkeddata.es/def/construction#hasElement
+const:hasElement rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf bot:hasElement ;
+                 rdfs:label "has element" .
 
 
-###  https://cogito.iot.linkeddata.es/def/core#relatesToBuilding
-core:relatesToBuilding rdf:type owl:ObjectProperty ;
-                       rdfs:label "relates to building" .
+###  https://cogito.iot.linkeddata.es/def/construction#hasQualityInformation
+const:hasQualityInformation rdf:type owl:ObjectProperty ;
+                            rdfs:range const:QualityInformation ;
+                            rdfs:label "has quality information" .
 
 
-###  https://saref.etsi.org/core#relatesToMeasurement
-saref:relatesToMeasurement rdf:type owl:ObjectProperty ;
-                           rdfs:domain saref:Property ;
-                           rdfs:range saref:Measurement ;
-                           rdfs:label "relates to measurement" .
+###  https://cogito.iot.linkeddata.es/def/process#isRelatedToBuilding
+process:isRelatedToBuilding rdf:type owl:ObjectProperty ;
+                            rdfs:domain process:Process ;
+                            rdfs:range const:Construction ;
+                            rdfs:label "is related to building" .
 
 
-###  https://saref.etsi.org/core#relatesToProperty
-saref:relatesToProperty rdf:type owl:ObjectProperty ;
-                        rdfs:domain saref:Measurement ;
-                        rdfs:range saref:Property ;
-                        rdfs:label "relates to property" .
+###  https://cogito.iot.linkeddata.es/def/process#relatesToElement
+process:relatesToElement rdf:type owl:ObjectProperty ;
+                         rdfs:domain process:Task ;
+                         rdfs:range const:Element ;
+                         rdfs:label "relates to element" .
+
+
+###  https://saref.etsi.org/core#assesses
+saref:assesses rdf:type owl:ObjectProperty ;
+               rdfs:domain s4city:KeyPerformanceIndicatorAssessment ;
+               rdfs:range saref:FeatureOfInterest ;
+               rdfs:label "assesses" .
+
+
+###  https://saref.etsi.org/saref4city#quantifiesKPI
+s4city:quantifiesKPI rdf:type owl:ObjectProperty ;
+                     rdfs:domain s4city:KeyPerformanceIndicatorAssessment ;
+                     rdfs:range s4city:KeyPerformanceIndicator ;
+                     rdfs:label "quantifies KPI" .
 
 
 ###  https://w3id.org/bot#containsZone
-<https://w3id.org/bot#containsZone> rdf:type owl:ObjectProperty ;
-                                    rdfs:domain <https://w3id.org/bot#Building> ;
-                                    rdfs:range core:Zone ;
-                                    rdfs:label "contains zone" .
+bot:containsZone rdf:type owl:ObjectProperty ;
+                 rdfs:domain const:Zone ;
+                 rdfs:label "contains zone" .
 
 
 ###  https://w3id.org/bot#hasElement
-<https://w3id.org/bot#hasElement> rdf:type owl:ObjectProperty ;
-                                  rdfs:range core:Element ;
-                                  rdfs:label "has element" .
+bot:hasElement rdf:type owl:ObjectProperty ;
+               rdfs:range const:Element ;
+               rdfs:label "has element" .
 
 
 ###  https://w3id.org/bot#hasSpace
-<https://w3id.org/bot#hasSpace> rdf:type owl:ObjectProperty ;
-                                rdfs:label "has space" .
+bot:hasSpace rdf:type owl:ObjectProperty ;
+             rdfs:range const:Space ;
+             rdfs:label "has space" .
 
 
-###  https://w3id.org/bot#hasSubcomponent
-<https://w3id.org/bot#hasSubcomponent> rdf:type owl:ObjectProperty ;
-                                       rdfs:domain <https://w3id.org/bot#Element> ;
-                                       rdfs:range <https://w3id.org/bot#Element> ;
-                                       rdfs:label "has subcomponent" .
+###  https://w3id.org/bot#hasSubElement
+bot:hasSubElement rdf:type owl:ObjectProperty ;
+                  rdfs:label "has sub-element" .
 
 
 #################################################################
 #    Data properties
 #################################################################
 
-###  https://cogito.iot.linkeddata.es/def/core#ifcIdentifier
-core:ifcIdentifier rdf:type owl:DatatypeProperty ;
-                   rdfs:range xsd:string ;
-                   rdfs:label "ifc identifier" .
-
-
-###  https://cogito.iot.linkeddata.es/def/core#propertyName
-core:propertyName rdf:type owl:DatatypeProperty ;
-                  rdfs:range xsd:string ;
-                  rdfs:label "property name" .
-
-
-###  https://saref.etsi.org/core#hasValue
-saref:hasValue rdf:type owl:DatatypeProperty ;
-               rdfs:range xsd:float ;
-               rdfs:label "has value" .
-
-
-###  https://saref.etsi.org/core/hasTimestamp
-<https://saref.etsi.org/core/hasTimestamp> rdf:type owl:DatatypeProperty ;
-                                           rdfs:comment "A relationship stating the timestamp of an entity (e.g. a measurement)." ;
-                                           rdfs:isDefinedBy <https://saref.etsi.org/core/> ;
-                                           rdfs:label "has timestamp" .
+###  https://cogito.iot.linkeddata.es/def/construction#ifcIdentifier
+const:ifcIdentifier rdf:type owl:DatatypeProperty ;
+                    rdfs:range xsd:string ;
+                    rdfs:label "IFC identifier" .
 
 
 #################################################################
@@ -126,147 +123,78 @@ geo:SpatialThing rdf:type owl:Class ;
                  rdfs:label "Spatial Thing" .
 
 
-###  https://cogito.iot.linkeddata.es/def/core#Construction
-core:Construction rdf:type owl:Class ;
-                  rdfs:subClassOf <https://w3id.org/bot#Building> ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty <https://w3id.org/bot#hasElement> ;
-                                    owl:someValuesFrom core:Element
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty <https://w3id.org/bot#hasSpace> ;
-                                    owl:someValuesFrom core:Space
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty core:ifcIdentifier ;
-                                    owl:someValuesFrom xsd:string
-                                  ] ;
-                  rdfs:label "Construction" .
+###  https://cogito.iot.linkeddata.es/def/construction#Construction
+const:Construction rdf:type owl:Class ;
+                   rdfs:subClassOf bot:Zone ;
+                   rdfs:label "Construction" .
 
 
-###  https://cogito.iot.linkeddata.es/def/core#ConstructionElement
-core:ConstructionElement rdf:type owl:Class ;
-                         rdfs:subClassOf core:Element ;
-                         rdfs:label "Construction Element" .
+###  https://cogito.iot.linkeddata.es/def/construction#Element
+const:Element rdf:type owl:Class ;
+              rdfs:subClassOf geo:SpatialThing ,
+                              bot:Element ;
+              rdfs:label "Element" .
 
 
-###  https://cogito.iot.linkeddata.es/def/core#Device
-core:Device rdf:type owl:Class ;
-            rdfs:subClassOf <https://saref.etsi.org/core/Device> ;
-            rdfs:label "Device" .
+###  https://cogito.iot.linkeddata.es/def/construction#QualityInformation
+const:QualityInformation rdf:type owl:Class ;
+                         rdfs:subClassOf s4city:KeyPerformanceIndicator ;
+                         rdfs:label "Quality Information" .
 
 
-###  https://cogito.iot.linkeddata.es/def/core#Element
-core:Element rdf:type owl:Class ;
-             rdfs:subClassOf <https://w3id.org/bot#Element> ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty core:hasQualityInformation ;
-                               owl:someValuesFrom core:QualityInformation
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty saref:relatesToProperty ;
-                               owl:someValuesFrom core:Property
-                             ] ;
-             rdfs:label "Element" .
+###  https://cogito.iot.linkeddata.es/def/construction#Space
+const:Space rdf:type owl:Class ;
+            rdfs:subClassOf bot:Space ;
+            rdfs:label "Space" .
 
 
-###  https://cogito.iot.linkeddata.es/def/core#Property
-core:Property rdf:type owl:Class ;
-              rdfs:subClassOf saref:Property ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty core:ifcIdentifier ;
-                                owl:someValuesFrom xsd:string
-                              ] ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty core:propertyName ;
-                                owl:someValuesFrom xsd:string
-                              ] ;
-              rdfs:label "Property" .
+###  https://cogito.iot.linkeddata.es/def/construction#Zone
+const:Zone rdf:type owl:Class ;
+           rdfs:subClassOf geo:SpatialThing ,
+                           bot:Zone ;
+           rdfs:label "Zone" .
 
 
-###  https://cogito.iot.linkeddata.es/def/core#QualityInformation
-core:QualityInformation rdf:type owl:Class ;
-                        rdfs:label "Quality Information" .
+###  https://cogito.iot.linkeddata.es/def/process#Process
+process:Process rdf:type owl:Class ;
+                rdfs:label "Process" .
 
 
-###  https://cogito.iot.linkeddata.es/def/core#Space
-core:Space rdf:type owl:Class ;
-           rdfs:subClassOf <https://w3id.org/bot#Space> ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty <https://w3id.org/bot#hasElement> ;
-                             owl:someValuesFrom core:Element
-                           ] ;
-           rdfs:label "Space" .
+###  https://cogito.iot.linkeddata.es/def/process#Task
+process:Task rdf:type owl:Class ;
+             rdfs:label "Task" .
 
 
-###  https://cogito.iot.linkeddata.es/def/core#Zone
-core:Zone rdf:type owl:Class ;
-          rdfs:subClassOf <https://w3id.org/bot#Zone> ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty <https://w3id.org/bot#hasElement> ;
-                            owl:someValuesFrom core:Element
-                          ] ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty <https://w3id.org/bot#hasSpace> ;
-                            owl:someValuesFrom core:Space
-                          ] ;
-          rdfs:label "Zone" .
+###  https://saref.etsi.org/core#Feature
+saref:Feature rdf:type owl:Class ;
+              rdfs:label "Feature" .
 
 
-###  https://saref.etsi.org/core#Measurement
-saref:Measurement rdf:type owl:Class ;
-                  rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                    owl:onProperty saref:relatesToProperty ;
-                                    owl:allValuesFrom saref:Property
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty saref:hasValue ;
-                                    owl:someValuesFrom xsd:float
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty <https://saref.etsi.org/core/hasTimestamp> ;
-                                    owl:allValuesFrom xsd:dateTime
-                                  ] ;
-                  rdfs:isDefinedBy <https://saref.etsi.org/core/> ;
-                  rdfs:label "Measurement" .
+###  https://saref.etsi.org/core#FeatureOfInterest
+saref:FeatureOfInterest rdf:type owl:Class ;
+                        rdfs:label "Feature of Interest" .
 
 
-###  https://saref.etsi.org/core#Property
-saref:Property rdf:type owl:Class ;
-               rdfs:isDefinedBy <https://saref.etsi.org/core/> ;
-               rdfs:label "Property" .
+###  https://saref.etsi.org/saref4city#KeyPerformanceIndicator
+s4city:KeyPerformanceIndicator rdf:type owl:Class ;
+                               rdfs:label "Key Performance Indicator" .
 
 
-###  https://saref.etsi.org/core/Device
-<https://saref.etsi.org/core/Device> rdf:type owl:Class ;
-                                     rdfs:subClassOf core:Element ;
-                                     rdfs:isDefinedBy <https://saref.etsi.org/core> ;
-                                     rdfs:label "Device" .
-
-
-###  https://w3id.org/bot#Building
-<https://w3id.org/bot#Building> rdf:type owl:Class ;
-                                rdfs:isDefinedBy <https://w3id.org/bot#> ;
-                                rdfs:label "Building" .
+###  https://saref.etsi.org/saref4city#KeyPerformanceIndicatorAssessment
+s4city:KeyPerformanceIndicatorAssessment rdf:type owl:Class ;
+                                         rdfs:label "Key Performance Indicator Assessment" .
 
 
 ###  https://w3id.org/bot#Element
-<https://w3id.org/bot#Element> rdf:type owl:Class ;
-                               rdfs:subClassOf geo:SpatialThing ;
-                               rdfs:isDefinedBy <https://w3id.org/bot#> ;
-                               rdfs:label "Element" .
+bot:Element rdf:type owl:Class ;
+            rdfs:label "Element" .
 
 
 ###  https://w3id.org/bot#Space
-<https://w3id.org/bot#Space> rdf:type owl:Class ;
-                             rdfs:isDefinedBy <https://w3id.org/bot#> ;
-                             rdfs:label "Space" .
+bot:Space rdf:type owl:Class ;
+          rdfs:label "Space" .
 
 
 ###  https://w3id.org/bot#Zone
-<https://w3id.org/bot#Zone> rdf:type owl:Class ;
-                            rdfs:isDefinedBy <https://w3id.org/bot#> ;
-                            rdfs:label "Zone" .
-
-
-###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
+bot:Zone rdf:type owl:Class ;
+         rdfs:label "Zone" .
