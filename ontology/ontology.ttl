@@ -1,5 +1,6 @@
 @prefix : <https://cogito.iot.linkeddata.es/def/construction#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix beo: <https://pi.pauwel.be/voc/buildingelement#> .
 @prefix bot: <https://w3id.org/bot#> .
 @prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -7,7 +8,9 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix brick: <https://brickschema.org/schema/1.1/Brick#> .
 @prefix const: <https://cogito.iot.linkeddata.es/def/construction#> .
+@prefix props: <https://w3id.org/props#> .
 @prefix saref: <https://saref.etsi.org/core#> .
 @prefix s4city: <https://saref.etsi.org/saref4city#> .
 @prefix process: <https://cogito.iot.linkeddata.es/def/process#> .
@@ -20,7 +23,7 @@
                                                       dc:description "The COGITO Construction ontology aims at modelling the construction domain." ;
                                                       dc:title "Construction Ontology" ;
                                                       <http://purl.org/dc/terms/license> <http://purl.org/NET/rdflicense/cc-by4.0> ;
-                                                      owl:versionInfo "0.0.1" .
+                                                      owl:versionInfo "0.0.2" .
 
 #################################################################
 #    Annotation properties
@@ -46,10 +49,14 @@ dc:title rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
-###  https://cogito.iot.linkeddata.es/def/construction#hasElement
-const:hasElement rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf bot:hasElement ;
-                 rdfs:label "has element" .
+###  https://brickschema.org/schema/1.1/Brick#hasPart
+brick:hasPart rdf:type owl:ObjectProperty ;
+              rdfs:label "has part" .
+
+
+###  https://brickschema.org/schema/1.1/Brick#isPartOf
+brick:isPartOf rdf:type owl:ObjectProperty ;
+               rdfs:label "is part of" .
 
 
 ###  https://cogito.iot.linkeddata.es/def/construction#hasQualityInformation
@@ -74,22 +81,40 @@ process:relatesToElement rdf:type owl:ObjectProperty ;
 
 ###  https://saref.etsi.org/core#assesses
 saref:assesses rdf:type owl:ObjectProperty ;
-               rdfs:domain s4city:KeyPerformanceIndicatorAssessment ;
-               rdfs:range saref:FeatureOfInterest ;
                rdfs:label "assesses" .
 
 
 ###  https://saref.etsi.org/saref4city#quantifiesKPI
 s4city:quantifiesKPI rdf:type owl:ObjectProperty ;
-                     rdfs:domain s4city:KeyPerformanceIndicatorAssessment ;
-                     rdfs:range s4city:KeyPerformanceIndicator ;
                      rdfs:label "quantifies KPI" .
+
+
+###  https://w3id.org/bot#containsElement
+bot:containsElement rdf:type owl:ObjectProperty ;
+                    rdfs:label "contains element" .
 
 
 ###  https://w3id.org/bot#containsZone
 bot:containsZone rdf:type owl:ObjectProperty ;
                  rdfs:domain const:Zone ;
                  rdfs:label "contains zone" .
+
+
+###  https://w3id.org/bot#hasAdjacentElement
+bot:hasAdjacentElement rdf:type owl:ObjectProperty ;
+                       rdfs:range const:Element .
+
+
+###  https://w3id.org/bot#hasAdjacentZone
+bot:hasAdjacentZone rdf:type owl:ObjectProperty ;
+                    rdfs:range const:Zone ;
+                    rdfs:label "has adjacent zone" .
+
+
+###  https://w3id.org/bot#hasBuilding
+bot:hasBuilding rdf:type owl:ObjectProperty ;
+                rdfs:range const:Building ;
+                rdfs:label "has building" .
 
 
 ###  https://w3id.org/bot#hasElement
@@ -102,6 +127,11 @@ bot:hasElement rdf:type owl:ObjectProperty ;
 bot:hasSpace rdf:type owl:ObjectProperty ;
              rdfs:range const:Space ;
              rdfs:label "has space" .
+
+
+###  https://w3id.org/bot#hasStorey
+bot:hasStorey rdf:type owl:ObjectProperty ;
+              rdfs:label "has storey" .
 
 
 ###  https://w3id.org/bot#hasSubElement
@@ -119,6 +149,21 @@ const:ifcIdentifier rdf:type owl:DatatypeProperty ;
                     rdfs:label "IFC identifier" .
 
 
+###  https://w3id.org/props#hasArea
+props:hasArea rdf:type owl:DatatypeProperty ;
+              rdfs:label "has area" .
+
+
+###  https://w3id.org/props#hasCompressedGuid
+props:hasCompressedGuid rdf:type owl:DatatypeProperty ;
+                        rdfs:label "has compressed guid" .
+
+
+###  https://w3id.org/props#hasVolume
+props:hasVolume rdf:type owl:DatatypeProperty ;
+                rdfs:label "has volume" .
+
+
 #################################################################
 #    Classes
 #################################################################
@@ -126,6 +171,34 @@ const:ifcIdentifier rdf:type owl:DatatypeProperty ;
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing
 geo:SpatialThing rdf:type owl:Class ;
                  rdfs:label "Spatial Thing" .
+
+
+###  https://brickschema.org/schema/1.1/Brick#Building
+brick:Building rdf:type owl:Class ;
+               rdfs:label "Building" .
+
+
+###  https://brickschema.org/schema/1.1/Brick#Floor
+brick:Floor rdf:type owl:Class ;
+            rdfs:label "Floor" .
+
+
+###  https://brickschema.org/schema/1.1/Brick#Location
+brick:Location rdf:type owl:Class ;
+               rdfs:label "Location" .
+
+
+###  https://brickschema.org/schema/1.1/Brick#Space
+brick:Space rdf:type owl:Class ;
+            rdfs:label "Space" .
+
+
+###  https://cogito.iot.linkeddata.es/def/construction#Building
+const:Building rdf:type owl:Class ;
+               rdfs:subClassOf brick:Building ,
+                               const:Construction ,
+                               bot:Building ;
+               rdfs:label "Building" .
 
 
 ###  https://cogito.iot.linkeddata.es/def/construction#Construction
@@ -137,20 +210,35 @@ const:Construction rdf:type owl:Class ;
 ###  https://cogito.iot.linkeddata.es/def/construction#Element
 const:Element rdf:type owl:Class ;
               rdfs:subClassOf geo:SpatialThing ,
+                              beo:Products ,
                               bot:Element ;
               rdfs:label "Element" .
 
 
 ###  https://cogito.iot.linkeddata.es/def/construction#QualityInformation
 const:QualityInformation rdf:type owl:Class ;
-                         rdfs:subClassOf s4city:KeyPerformanceIndicator ;
                          rdfs:label "Quality Information" .
+
+
+###  https://cogito.iot.linkeddata.es/def/construction#Site
+const:Site rdf:type owl:Class ;
+           rdfs:subClassOf brick:Location ,
+                           bot:Site ;
+           rdfs:label "Site" .
 
 
 ###  https://cogito.iot.linkeddata.es/def/construction#Space
 const:Space rdf:type owl:Class ;
-            rdfs:subClassOf bot:Space ;
+            rdfs:subClassOf brick:Space ,
+                            bot:Space ;
             rdfs:label "Space" .
+
+
+###  https://cogito.iot.linkeddata.es/def/construction#Storey
+const:Storey rdf:type owl:Class ;
+             rdfs:subClassOf brick:Floor ,
+                             bot:Storey ;
+             rdfs:label "Storey" .
 
 
 ###  https://cogito.iot.linkeddata.es/def/construction#Zone
@@ -170,24 +258,14 @@ process:Task rdf:type owl:Class ;
              rdfs:label "Task" .
 
 
-###  https://saref.etsi.org/core#Feature
-saref:Feature rdf:type owl:Class ;
-              rdfs:label "Feature" .
+###  https://pi.pauwel.be/voc/buildingelement#Products
+beo:Products rdf:type owl:Class ;
+             rdfs:label "Products" .
 
 
-###  https://saref.etsi.org/core#FeatureOfInterest
-saref:FeatureOfInterest rdf:type owl:Class ;
-                        rdfs:label "Feature of Interest" .
-
-
-###  https://saref.etsi.org/saref4city#KeyPerformanceIndicator
-s4city:KeyPerformanceIndicator rdf:type owl:Class ;
-                               rdfs:label "Key Performance Indicator" .
-
-
-###  https://saref.etsi.org/saref4city#KeyPerformanceIndicatorAssessment
-s4city:KeyPerformanceIndicatorAssessment rdf:type owl:Class ;
-                                         rdfs:label "Key Performance Indicator Assessment" .
+###  https://w3id.org/bot#Building
+bot:Building rdf:type owl:Class ;
+             rdfs:label "Building" .
 
 
 ###  https://w3id.org/bot#Element
@@ -195,9 +273,19 @@ bot:Element rdf:type owl:Class ;
             rdfs:label "Element" .
 
 
+###  https://w3id.org/bot#Site
+bot:Site rdf:type owl:Class ;
+         rdfs:label "Site" .
+
+
 ###  https://w3id.org/bot#Space
 bot:Space rdf:type owl:Class ;
           rdfs:label "Space" .
+
+
+###  https://w3id.org/bot#Storey
+bot:Storey rdf:type owl:Class ;
+           rdfs:label "Storey" .
 
 
 ###  https://w3id.org/bot#Zone
