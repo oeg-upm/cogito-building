@@ -1,11 +1,11 @@
 ﻿Identifier;Competency Question / Fact
-PROC-1;A (project) process has a cost, which is measured in a certain currency
-PROC-2;A task belongs to a certain process
-PROC-3;A task is related to one or several (construction) elements
-PROC-4;A task includes progress and priority information
-PROC-5;A task can have a date of creation, og beginning and of end
-PROC-6;A task can have sub-tasks 
-PROC-7;A task can have predecessor tasks
-PROC-8;A task requires certain resource types
-PROC-9;A work order is related to a process
-PROC-10;A work order has resources assigned
+FACI-1;A project is related to a site and one or more processes, 
+FACI-2;A project can have images and point clouds
+FACI-3;A site contains a facility
+FACI-4;Facilities include buildings, railways, bridges and roads
+FACI-5;Buildings can have storeys, while railways, bridges and roads can have facility parts
+FACI-6;Buildings, storeys, spaces and facility parts can contain elements and spatial zones
+FACI-7;Spatial zones can contain elements
+FACI-8;Elements include walls, slabs, columns, …
+FACI-9;An element can have subelements
+FACI-10;Spatial zones include tracked zones (used by tags) and construction zones (which can be walkable or fall zones and can have safety information)

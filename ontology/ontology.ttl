@@ -1,26 +1,33 @@
-@prefix : <https://cogito.iot.linkeddata.es/def/process#> .
+@prefix : <https://cogito.iot.linkeddata.es/def/facility#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix td: <https://www.w3.org/2019/wot/td#> .
+@prefix beo: <https://pi.pauwel.be/voc/buildingelement#> .
+@prefix bot: <https://w3id.org/bot#> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix qual: <https://cogito.iot.linkeddata.es/def/quality#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix time: <http://www.w3.org/2006/time#> .
+@prefix brick: <https://brickschema.org/schema/1.1/Brick#> .
+@prefix props: <https://w3id.org/props#> .
 @prefix saref: <https://saref.etsi.org/core#> .
 @prefix s4city: <https://saref.etsi.org/saref4city#> .
 @prefix process: <https://cogito.iot.linkeddata.es/def/process#> .
 @prefix facility: <https://cogito.iot.linkeddata.es/def/facility#> .
 @prefix resource: <https://cogito.iot.linkeddata.es/def/resource#> .
-@base <https://cogito.iot.linkeddata.es/def/process#> .
+@base <https://cogito.iot.linkeddata.es/def/facility#> .
 
-<https://cogito.iot.linkeddata.es/def/process#> rdf:type owl:Ontology ;
-                                                 dc:creator "Alba Fernández Izquierdo" ,
-                                                            "Raúl García Castro" ,
-                                                            "Socorro  Bernardos Galindo" ;
-                                                 dc:description "The COGITO Process ontology aims at modelling the construction process." ;
-                                                 dc:title "Process Ontology" ;
-                                                 <http://purl.org/dc/terms/license> <http://purl.org/NET/rdflicense/cc-by4.0> ;
-                                                 owl:versionInfo "0.2.0" .
+<https://cogito.iot.linkeddata.es/def/facility#> rdf:type owl:Ontology ;
+                                                  owl:imports <https://pi.pauwel.be/voc/buildingelement> ;
+                                                  dc:creator "Alba Fernández Izquierdo" ,
+                                                             "Raúl García Castro" ,
+                                                             "Socorro  Bernardos Galindo" ;
+                                                  dc:description "The COGITO Facility ontology aims at modelling facilities in the construction domain." ;
+                                                  dc:title "Construction Ontology" ;
+                                                  <http://purl.org/dc/terms/license> <http://purl.org/NET/rdflicense/cc-by4.0> ;
+                                                  owl:versionInfo "0.2.0" .
 
 #################################################################
 #    Annotation properties
@@ -46,147 +53,236 @@ dc:title rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
-###  https://cogito.iot.linkeddata.es/def/process#hasCost
-process:hasCost rdf:type owl:ObjectProperty ;
-                rdfs:range process:Cost ;
-                rdfs:label "has cost" .
+###  https://cogito.iot.linkeddata.es/def/facility#hasFacilityPart
+facility:hasFacilityPart rdf:type owl:ObjectProperty ;
+                         rdfs:label "has facility part" .
 
 
-###  https://cogito.iot.linkeddata.es/def/process#hasTask
-process:hasTask rdf:type owl:ObjectProperty ;
-                rdfs:label "has task" .
+###  https://cogito.iot.linkeddata.es/def/facility#hasSubFacilityPart
+facility:hasSubFacilityPart rdf:type owl:ObjectProperty ;
+                            rdfs:label "has sub facility part" .
 
 
-###  https://cogito.iot.linkeddata.es/def/process#involvesResourceType
-process:involvesResourceType rdf:type owl:ObjectProperty ;
-                             rdfs:domain process:Process ,
-                                         process:Task ;
-                             rdfs:range resource:Resource ;
-                             rdfs:label "involves resource type" .
+###  https://cogito.iot.linkeddata.es/def/facility#involvesTask
+facility:involvesTask rdf:type owl:ObjectProperty ;
+                      rdfs:label "involves task" .
 
 
-###  https://cogito.iot.linkeddata.es/def/process#isExecutedAfter
-process:isExecutedAfter rdf:type owl:ObjectProperty ;
-                        rdfs:domain process:Task ;
-                        rdfs:range process:Task ;
-                        rdfs:label "is executed after" .
+###  https://cogito.iot.linkeddata.es/def/facility#isRelatedToProcess
+facility:isRelatedToProcess rdf:type owl:ObjectProperty ;
+                            rdfs:label "is related to process" .
 
 
-###  https://cogito.iot.linkeddata.es/def/process#isMeasuredIn
-process:isMeasuredIn rdf:type owl:ObjectProperty ;
-                     rdfs:domain process:Cost ;
-                     rdfs:range process:UnitOfCurrency ;
-                     rdfs:label "is measured in" .
-
-
-###  https://cogito.iot.linkeddata.es/def/process#isSubTaskOf
-process:isSubTaskOf rdf:type owl:ObjectProperty ;
-                    rdfs:label "is sub-task of" .
+###  https://cogito.iot.linkeddata.es/def/facility#isRelatedToSite
+facility:isRelatedToSite rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf owl:topObjectProperty ;
+                         rdfs:label "is ralated to site" .
 
 
 ###  https://cogito.iot.linkeddata.es/def/process#relatesToElement
 process:relatesToElement rdf:type owl:ObjectProperty ;
-                         rdfs:domain process:Task ;
                          rdfs:range facility:Element ;
                          rdfs:label "relates to element" .
 
 
-###  https://cogito.iot.linkeddata.es/def/resource#hasAssignedResource
-resource:hasAssignedResource rdf:type owl:ObjectProperty ;
-                             rdfs:label "has assigned resource" .
+###  https://cogito.iot.linkeddata.es/def/quality#refersToElement
+qual:refersToElement rdf:type owl:ObjectProperty ;
+                     rdfs:label "refers to element" .
+
+
+###  https://cogito.iot.linkeddata.es/def/quality#refersToZone
+qual:refersToZone rdf:type owl:ObjectProperty ;
+                  rdfs:label "refers to zone" .
+
+
+###  https://cogito.iot.linkeddata.es/def/quality#relatedToProject
+qual:relatedToProject rdf:type owl:ObjectProperty ;
+                      rdfs:label "related to project" .
+
+
+###  https://cogito.iot.linkeddata.es/def/resource#assignedToTrackedZone
+resource:assignedToTrackedZone rdf:type owl:ObjectProperty ;
+                               rdfs:label "assigned to tracked zone" .
+
+
+###  https://w3id.org/bot#containsElement
+bot:containsElement rdf:type owl:ObjectProperty ;
+                    rdfs:label "contains element" .
+
+
+###  https://w3id.org/bot#containsZone
+bot:containsZone rdf:type owl:ObjectProperty ;
+                 rdfs:label "contains zone" .
+
+
+###  https://w3id.org/bot#hasBuilding
+bot:hasBuilding rdf:type owl:ObjectProperty ;
+                rdfs:range facility:Building ;
+                rdfs:label "has building" .
+
+
+###  https://w3id.org/bot#hasElement
+bot:hasElement rdf:type owl:ObjectProperty ;
+               rdfs:range facility:Element ;
+               rdfs:label "has element" .
+
+
+###  https://w3id.org/bot#hasSpace
+bot:hasSpace rdf:type owl:ObjectProperty ;
+             rdfs:range facility:Space ;
+             rdfs:label "has space" .
+
+
+###  https://w3id.org/bot#hasStorey
+bot:hasStorey rdf:type owl:ObjectProperty ;
+              rdfs:label "has storey" .
+
+
+###  https://w3id.org/bot#hasSubElement
+bot:hasSubElement rdf:type owl:ObjectProperty ;
+                  rdfs:label "has sub-element" .
 
 
 #################################################################
 #    Data properties
 #################################################################
 
-###  https://cogito.iot.linkeddata.es/def/process#amount
-process:amount rdf:type owl:DatatypeProperty ;
-               rdfs:range xsd:float ;
-               rdfs:label "amount" .
+###  https://cogito.iot.linkeddata.es/def/facility#accuracy
+facility:accuracy rdf:type owl:DatatypeProperty ;
+                  rdfs:label "accuracy" .
 
 
-###  https://cogito.iot.linkeddata.es/def/process#currencyCode
-process:currencyCode rdf:type owl:DatatypeProperty ;
-                     rdfs:label "currency code" .
+###  https://cogito.iot.linkeddata.es/def/facility#coordOrigin
+facility:coordOrigin rdf:type owl:DatatypeProperty ;
+                     rdfs:label "coordinates origin" .
 
 
-###  https://cogito.iot.linkeddata.es/def/process#currencySymbol
-process:currencySymbol rdf:type owl:DatatypeProperty ;
-                       rdfs:label "currency symbol" .
+###  https://cogito.iot.linkeddata.es/def/facility#name
+facility:name rdf:type owl:DatatypeProperty ;
+              rdfs:range xsd:string ;
+              rdfs:label "name" .
 
 
-###  https://cogito.iot.linkeddata.es/def/process#hasAuthor
-process:hasAuthor rdf:type owl:DatatypeProperty ;
-                  rdfs:label "has author" .
+###  https://cogito.iot.linkeddata.es/def/facility#projectId
+facility:projectId rdf:type owl:DatatypeProperty ;
+                   rdfs:label "project identifier" .
 
 
-###  https://cogito.iot.linkeddata.es/def/process#hasBeginningDate
-process:hasBeginningDate rdf:type owl:DatatypeProperty ;
-                         rdfs:label "has beginning date" .
-
-
-###  https://cogito.iot.linkeddata.es/def/process#hasCreationDate
-process:hasCreationDate rdf:type owl:DatatypeProperty ;
-                        rdfs:range xsd:dateTime ;
-                        rdfs:label "has creation date" .
-
-
-###  https://cogito.iot.linkeddata.es/def/process#hasEndDate
-process:hasEndDate rdf:type owl:DatatypeProperty ;
-                   rdfs:label "has end date" .
-
-
-###  https://cogito.iot.linkeddata.es/def/process#hasName
-process:hasName rdf:type owl:DatatypeProperty ;
-                rdfs:range xsd:string ;
-                rdfs:label "has name" .
-
-
-###  https://cogito.iot.linkeddata.es/def/process#hasPriority
-process:hasPriority rdf:type owl:DatatypeProperty ;
-                    rdfs:range xsd:integer ;
-                    rdfs:label "has priority" .
-
-
-###  https://cogito.iot.linkeddata.es/def/process#hasProgress
-process:hasProgress rdf:type owl:DatatypeProperty ;
-                    rdfs:range xsd:string ;
-                    rdfs:label "has progress" .
-
-
-###  https://cogito.iot.linkeddata.es/def/process#hasStatus
-process:hasStatus rdf:type owl:DatatypeProperty ;
-                  rdfs:label "has status" .
-
-
-###  https://cogito.iot.linkeddata.es/def/process#processId
-process:processId rdf:type owl:DatatypeProperty ;
-                  rdfs:label "process identifier" .
-
-
-###  https://cogito.iot.linkeddata.es/def/process#taskId
-process:taskId rdf:type owl:DatatypeProperty ;
-               rdfs:label "task identifier" .
+###  https://w3id.org/props#hasCompressedGuid
+props:hasCompressedGuid rdf:type owl:DatatypeProperty ;
+                        rdfs:label "has compressed guid" .
 
 
 #################################################################
 #    Classes
 #################################################################
 
+###  http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing
+geo:SpatialThing rdf:type owl:Class ;
+                 rdfs:label "Spatial Thing" .
+
+
+###  https://cogito.iot.linkeddata.es/def/facility#Bridge
+facility:Bridge rdf:type owl:Class ;
+                rdfs:subClassOf facility:Facility ;
+                rdfs:label "Bridge" .
+
+
+###  https://cogito.iot.linkeddata.es/def/facility#Building
+facility:Building rdf:type owl:Class ;
+                  rdfs:subClassOf facility:Facility ,
+                                  bot:Building ;
+                  rdfs:label "Building" .
+
+
+###  https://cogito.iot.linkeddata.es/def/facility#ConstructionZone
+facility:ConstructionZone rdf:type owl:Class ;
+                          rdfs:subClassOf facility:SpatialZone ;
+                          rdfs:label "Construction Zone" .
+
+
 ###  https://cogito.iot.linkeddata.es/def/facility#Element
 facility:Element rdf:type owl:Class ;
+                 rdfs:subClassOf geo:SpatialThing ,
+                                 bot:Element ;
                  rdfs:label "Element" .
+
+
+###  https://cogito.iot.linkeddata.es/def/facility#Facility
+facility:Facility rdf:type owl:Class ;
+                  rdfs:subClassOf bot:Zone ;
+                  rdfs:label "Facility" .
+
+
+###  https://cogito.iot.linkeddata.es/def/facility#FacilityPart
+facility:FacilityPart rdf:type owl:Class ;
+                      rdfs:subClassOf bot:Zone .
+
+
+###  https://cogito.iot.linkeddata.es/def/facility#FallZone
+facility:FallZone rdf:type owl:Class ;
+                  rdfs:subClassOf facility:ConstructionZone ;
+                  rdfs:label "Fall Zone" .
+
+
+###  https://cogito.iot.linkeddata.es/def/facility#PointCloud
+facility:PointCloud rdf:type owl:Class ;
+                    rdfs:label "Point Cloud" .
 
 
 ###  https://cogito.iot.linkeddata.es/def/facility#Project
 facility:Project rdf:type owl:Class ;
+                 rdfs:subClassOf td:Thing ;
                  rdfs:label "Project" .
 
 
-###  https://cogito.iot.linkeddata.es/def/process#Cost
-process:Cost rdf:type owl:Class ;
-             rdfs:label "Cost" .
+###  https://cogito.iot.linkeddata.es/def/facility#Railway
+facility:Railway rdf:type owl:Class ;
+                 rdfs:subClassOf facility:Facility ;
+                 rdfs:label "Railway" .
+
+
+###  https://cogito.iot.linkeddata.es/def/facility#Road
+facility:Road rdf:type owl:Class ;
+              rdfs:subClassOf facility:Facility ;
+              rdfs:label "Road" .
+
+
+###  https://cogito.iot.linkeddata.es/def/facility#Site
+facility:Site rdf:type owl:Class ;
+              rdfs:subClassOf bot:Site ;
+              rdfs:label "Site" .
+
+
+###  https://cogito.iot.linkeddata.es/def/facility#Space
+facility:Space rdf:type owl:Class ;
+               rdfs:subClassOf bot:Space ;
+               rdfs:label "Space" .
+
+
+###  https://cogito.iot.linkeddata.es/def/facility#SpatialZone
+facility:SpatialZone rdf:type owl:Class ;
+                     rdfs:subClassOf geo:SpatialThing ,
+                                     bot:Zone ;
+                     rdfs:label "Spatial Zone" .
+
+
+###  https://cogito.iot.linkeddata.es/def/facility#Storey
+facility:Storey rdf:type owl:Class ;
+                rdfs:subClassOf bot:Storey ;
+                rdfs:label "Storey" .
+
+
+###  https://cogito.iot.linkeddata.es/def/facility#TrackedZone
+facility:TrackedZone rdf:type owl:Class ;
+                     rdfs:subClassOf facility:SpatialZone ;
+                     rdfs:label "Tracked Zone" .
+
+
+###  https://cogito.iot.linkeddata.es/def/facility#WalkableZone
+facility:WalkableZone rdf:type owl:Class ;
+                      rdfs:subClassOf facility:ConstructionZone ;
+                      rdfs:label "Walkable Zone" .
 
 
 ###  https://cogito.iot.linkeddata.es/def/process#Process
@@ -199,24 +295,59 @@ process:Task rdf:type owl:Class ;
              rdfs:label "Task" .
 
 
-###  https://cogito.iot.linkeddata.es/def/process#UnitOfCurrency
-process:UnitOfCurrency rdf:type owl:Class ;
-                       rdfs:label "Unit of Currency" .
+###  https://cogito.iot.linkeddata.es/def/quality#GeometricQualityInformation
+qual:GeometricQualityInformation rdf:type owl:Class ;
+                                 rdfs:label "Geometric Quality Information" .
 
 
-###  https://cogito.iot.linkeddata.es/def/process#WorkOrder
-process:WorkOrder rdf:type owl:Class ;
-                  rdfs:label "Work Order" .
+###  https://cogito.iot.linkeddata.es/def/quality#Image
+qual:Image rdf:type owl:Class ;
+           rdfs:label "Image" .
 
 
-###  https://cogito.iot.linkeddata.es/def/resource#Resource
-resource:Resource rdf:type owl:Class ;
-                  rdfs:label "Resource" .
+###  https://cogito.iot.linkeddata.es/def/quality#SafetyInformation
+qual:SafetyInformation rdf:type owl:Class ;
+                       rdfs:label "Safety Information" .
 
 
-###  https://cogito.iot.linkeddata.es/def/resource#ResourceType
-resource:ResourceType rdf:type owl:Class ;
-                      rdfs:label "Resource Type" .
+###  https://cogito.iot.linkeddata.es/def/resource#TrackingTag
+resource:TrackingTag rdf:type owl:Class ;
+                     rdfs:label "Tracking Tag" .
+
+
+###  https://w3id.org/bot#Building
+bot:Building rdf:type owl:Class ;
+             rdfs:label "Building" .
+
+
+###  https://w3id.org/bot#Element
+bot:Element rdf:type owl:Class ;
+            rdfs:label "Element" .
+
+
+###  https://w3id.org/bot#Site
+bot:Site rdf:type owl:Class ;
+         rdfs:label "Site" .
+
+
+###  https://w3id.org/bot#Space
+bot:Space rdf:type owl:Class ;
+          rdfs:label "Space" .
+
+
+###  https://w3id.org/bot#Storey
+bot:Storey rdf:type owl:Class ;
+           rdfs:label "Storey" .
+
+
+###  https://w3id.org/bot#Zone
+bot:Zone rdf:type owl:Class ;
+         rdfs:label "Zone" .
+
+
+###  https://www.w3.org/2019/wot/td#Thing
+td:Thing rdf:type owl:Class ;
+         rdfs:label "Thing" .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
