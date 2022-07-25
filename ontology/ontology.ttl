@@ -25,9 +25,9 @@
                                                              "Raúl García Castro" ,
                                                              "Socorro  Bernardos Galindo" ;
                                                   dc:description "The COGITO Facility ontology aims at modelling facilities in the construction domain." ;
-                                                  dc:title "Construction Ontology" ;
+                                                  dc:title "Facility Ontology" ;
                                                   <http://purl.org/dc/terms/license> <http://purl.org/NET/rdflicense/cc-by4.0> ;
-                                                  owl:versionInfo "0.2.0" .
+                                                  owl:versionInfo "0.5.0" .
 
 #################################################################
 #    Annotation properties
@@ -55,27 +55,38 @@ dc:title rdf:type owl:AnnotationProperty .
 
 ###  https://cogito.iot.linkeddata.es/def/facility#hasFacilityPart
 facility:hasFacilityPart rdf:type owl:ObjectProperty ;
+                         rdfs:range facility:FacilityPart ;
                          rdfs:label "has facility part" .
 
 
 ###  https://cogito.iot.linkeddata.es/def/facility#hasSubFacilityPart
 facility:hasSubFacilityPart rdf:type owl:ObjectProperty ;
+                            rdfs:domain facility:FacilityPart ;
+                            rdfs:range facility:FacilityPart ;
                             rdfs:label "has sub facility part" .
 
 
 ###  https://cogito.iot.linkeddata.es/def/facility#involvesTask
 facility:involvesTask rdf:type owl:ObjectProperty ;
+                      rdfs:range process:Task ;
                       rdfs:label "involves task" .
 
 
 ###  https://cogito.iot.linkeddata.es/def/facility#isRelatedToProcess
 facility:isRelatedToProcess rdf:type owl:ObjectProperty ;
+                            rdfs:range process:Process ;
                             rdfs:label "is related to process" .
+
+
+###  https://cogito.iot.linkeddata.es/def/facility#isRelatedToProject
+facility:isRelatedToProject rdf:type owl:ObjectProperty ;
+                            rdfs:range facility:Project ;
+                            rdfs:label "is related to project" .
 
 
 ###  https://cogito.iot.linkeddata.es/def/facility#isRelatedToSite
 facility:isRelatedToSite rdf:type owl:ObjectProperty ;
-                         rdfs:subPropertyOf owl:topObjectProperty ;
+                         rdfs:range facility:Site ;
                          rdfs:label "is ralated to site" .
 
 
@@ -87,31 +98,31 @@ process:relatesToElement rdf:type owl:ObjectProperty ;
 
 ###  https://cogito.iot.linkeddata.es/def/quality#refersToElement
 qual:refersToElement rdf:type owl:ObjectProperty ;
+                     rdfs:range facility:Element ;
                      rdfs:label "refers to element" .
 
 
 ###  https://cogito.iot.linkeddata.es/def/quality#refersToZone
 qual:refersToZone rdf:type owl:ObjectProperty ;
+                  rdfs:range bot:Zone ;
                   rdfs:label "refers to zone" .
-
-
-###  https://cogito.iot.linkeddata.es/def/quality#relatedToProject
-qual:relatedToProject rdf:type owl:ObjectProperty ;
-                      rdfs:label "related to project" .
 
 
 ###  https://cogito.iot.linkeddata.es/def/resource#assignedToTrackedZone
 resource:assignedToTrackedZone rdf:type owl:ObjectProperty ;
+                               rdfs:range facility:TrackedZone ;
                                rdfs:label "assigned to tracked zone" .
 
 
 ###  https://w3id.org/bot#containsElement
 bot:containsElement rdf:type owl:ObjectProperty ;
+                    rdfs:range facility:Element ;
                     rdfs:label "contains element" .
 
 
 ###  https://w3id.org/bot#containsZone
 bot:containsZone rdf:type owl:ObjectProperty ;
+                 rdfs:range bot:Zone ;
                  rdfs:label "contains zone" .
 
 
@@ -135,11 +146,14 @@ bot:hasSpace rdf:type owl:ObjectProperty ;
 
 ###  https://w3id.org/bot#hasStorey
 bot:hasStorey rdf:type owl:ObjectProperty ;
+              rdfs:range facility:Storey ;
               rdfs:label "has storey" .
 
 
 ###  https://w3id.org/bot#hasSubElement
 bot:hasSubElement rdf:type owl:ObjectProperty ;
+                  rdfs:domain facility:Element ;
+                  rdfs:range facility:Element ;
                   rdfs:label "has sub-element" .
 
 
@@ -155,6 +169,11 @@ facility:accuracy rdf:type owl:DatatypeProperty ;
 ###  https://cogito.iot.linkeddata.es/def/facility#coordOrigin
 facility:coordOrigin rdf:type owl:DatatypeProperty ;
                      rdfs:label "coordinates origin" .
+
+
+###  https://cogito.iot.linkeddata.es/def/facility#description
+facility:description rdf:type owl:DatatypeProperty ;
+                     rdfs:label "description" .
 
 
 ###  https://cogito.iot.linkeddata.es/def/facility#name
