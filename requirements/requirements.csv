@@ -1,11 +1,15 @@
 ﻿Identifier;Competency Question / Fact
-FACI-1;A project is related to a site and one or more processes, 
-FACI-2;A project can have images and point clouds
-FACI-3;A site contains a facility
-FACI-4;Facilities include buildings, railways, bridges and roads
-FACI-5;Buildings can have storeys, while railways, bridges and roads can have facility parts
-FACI-6;Buildings, storeys, spaces and facility parts can contain elements and spatial zones
-FACI-7;Spatial zones can contain elements
-FACI-8;Elements include walls, slabs, columns, …
-FACI-9;An element can have subelements
-FACI-10;Spatial zones include tracked zones (used by tags) and construction zones (which can be walkable or fall zones and can have safety information)
+FACI-1;A project is related to a site
+FACI-2;Spatial zones (especially sites) can have facility
+FACI-3;Facilities include buildings, railways, bridges and roads
+FACI-4;Spatial zones (especially facilities and facility parts) can have facility parts 
+FACI-5;Spatial zones (especially buildings) can have storeys
+FACI-6;Spatial zones can have spaces
+FACI-7;Spatial zones can contain elements and other spatial zones
+FACI-8;Elements include walls, slabs, columns, etc. (building elements)
+FACI-9;An element can have other elements
+FACI-10;Spatial zones include sites, facilities, facility parts, storeys and spaces
+FACI-11;Spatial zones include tracked zones (used by tags) and construction zones (which can be walkable or fall zones)
+FACI-12;A spatial zone has an identifier, a name and a description 
+FACI-13;An element has an identifier, a name and the material of its outside surface
+FACI-14;A project has an identifier and a name
