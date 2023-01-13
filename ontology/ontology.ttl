@@ -21,7 +21,7 @@
                                                   <http://purl.org/dc/elements/1.1/description> "The COGITO Facility ontology aims at modelling facilities in the construction domain." ;
                                                   <http://purl.org/dc/elements/1.1/title> "Facility Ontology" ;
                                                   dcterms:license <http://purl.org/NET/rdflicense/cc-by4.0> ;
-                                                  owl:versionInfo "0.9.0" .
+                                                  owl:versionInfo "0.10.0" .
 
 #################################################################
 #    Annotation properties
@@ -69,6 +69,12 @@ facility:hasSubElement rdf:type owl:ObjectProperty ;
                        rdfs:range facility:Element ;
                        rdfs:comment "A property that relates a facility:Element to another facility:Element it contains" ;
                        rdfs:label "has sub-element" .
+
+
+###  https://cogito.iot.linkeddata.es/def/facility#isRelatedToSapatialZone
+facility:isRelatedToSapatialZone rdf:type owl:ObjectProperty ;
+                                 rdfs:comment "A property relating an entity (especially a facility:SpatialZone) to a facility:SpatialZone" ;
+                                 rdfs:label "is related to spatial zone" .
 
 
 ###  https://cogito.iot.linkeddata.es/def/facility#isRelatedToSite
@@ -270,13 +276,6 @@ facility:Storey rdf:type owl:Class ;
                                 bot:Storey ;
                 rdfs:comment "A subclass of bot:Storey and, as such, is contained (bot:hasStorey) in one facility:Building, and is intended to contain (bot:hasSpace) one or more facility:Space that are horizontally connected." ;
                 rdfs:label "Storey" .
-
-
-###  https://cogito.iot.linkeddata.es/def/facility#TrackedZone
-facility:TrackedZone rdf:type owl:Class ;
-                     rdfs:subClassOf facility:SpatialZone ;
-                     rdfs:comment "Something used to represent zones used by the IoT preprocessing module" ;
-                     rdfs:label "Tracked Zone" .
 
 
 ###  https://cogito.iot.linkeddata.es/def/facility#WalkableZone
