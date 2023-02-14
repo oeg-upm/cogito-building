@@ -349,17 +349,6 @@
     
 
 
-    <!-- https://cogito.iot.linkeddata.es/def/facility#FallZone -->
-
-
-    <owl:Class rdf:about="https://cogito.iot.linkeddata.es/def/facility#FallZone">
-        <rdfs:subClassOf rdf:resource="https://cogito.iot.linkeddata.es/def/facility#ConstructionZone"/>
-        <rdfs:comment>A zone where somebody or something can fall through</rdfs:comment>
-        <rdfs:label>Fall Zone</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- https://cogito.iot.linkeddata.es/def/facility#Project -->
 
 
@@ -442,14 +431,12 @@ street or highway</rdfs:comment>
     
 
 
-    <!-- https://cogito.iot.linkeddata.es/def/facility#WalkableZone -->
+    <!-- https://pi.pauwel.be/voc/buildingelement#BuildingElement -->
 
 
-    <owl:Class rdf:about="https://cogito.iot.linkeddata.es/def/facility#WalkableZone">
-        <rdfs:subClassOf rdf:resource="https://cogito.iot.linkeddata.es/def/facility#ConstructionZone"/>
-        <rdfs:comment>A zone where somebody or something can walk along</rdfs:comment>
-        <rdfs:label>Walkable Zone</rdfs:label>
-    </owl:Class>
+    <rdf:Description rdf:about="https://pi.pauwel.be/voc/buildingelement#BuildingElement">
+        <rdfs:subClassOf rdf:resource="https://cogito.iot.linkeddata.es/def/facility#Element"/>
+    </rdf:Description>
     
 
 

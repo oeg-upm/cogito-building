@@ -150,18 +150,6 @@
     "@id" : "https://cogito.iot.linkeddata.es/def/facility#SpatialZone"
   } ]
 }, {
-  "@id" : "https://cogito.iot.linkeddata.es/def/facility#FallZone",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
-  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
-    "@value" : "A zone where somebody or something can fall through"
-  } ],
-  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
-    "@value" : "Fall Zone"
-  } ],
-  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
-    "@id" : "https://cogito.iot.linkeddata.es/def/facility#ConstructionZone"
-  } ]
-}, {
   "@id" : "https://cogito.iot.linkeddata.es/def/facility#Project",
   "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
   "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
@@ -253,18 +241,6 @@
     "@id" : "https://w3id.org/bot#Storey"
   } ]
 }, {
-  "@id" : "https://cogito.iot.linkeddata.es/def/facility#WalkableZone",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
-  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
-    "@value" : "A zone where somebody or something can walk along"
-  } ],
-  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
-    "@value" : "Walkable Zone"
-  } ],
-  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
-    "@id" : "https://cogito.iot.linkeddata.es/def/facility#ConstructionZone"
-  } ]
-}, {
   "@id" : "https://cogito.iot.linkeddata.es/def/facility#hasFacility",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
   "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
@@ -338,6 +314,11 @@
   } ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
     "@value" : "material"
+  } ]
+}, {
+  "@id" : "https://pi.pauwel.be/voc/buildingelement#BuildingElement",
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "https://cogito.iot.linkeddata.es/def/facility#Element"
   } ]
 }, {
   "@id" : "https://saref.etsi.org/saref4bldg#Building",
