@@ -47,10 +47,17 @@ dcterms:license rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
+###  https://cogito.iot.linkeddata.es/def/facility#belongToSpatialZone
+facility:belongToSpatialZone rdf:type owl:ObjectProperty ;
+                             owl:inverseOf bot:hasElement ;
+                             rdfs:comment "A property relating an entity, especially a facility:Element to a facility:SpatialZone" ;
+                             rdfs:label "belongs to spatial zone" .
+
+
 ###  https://cogito.iot.linkeddata.es/def/facility#hasFacility
 facility:hasFacility rdf:type owl:ObjectProperty ;
                      rdfs:subPropertyOf bot:containsZone ;
-                     rdfs:comment "A property relating a facility:Zone (especially a facility:Site) to a facility:Facility" ;
+                     rdfs:comment "A property relating a facility:SpatialZone (especially a facility:Site) to a facility:Facility" ;
                      rdfs:label "has facility" .
 
 
@@ -59,7 +66,7 @@ facility:hasFacilityPart rdf:type owl:ObjectProperty ;
                          rdfs:subPropertyOf bot:containsZone ;
                          rdfs:domain facility:SpatialZone ;
                          rdfs:range facility:FacilityPart ;
-                         rdfs:comment "A property relating a facility:Zone (especially a facility:Facility or a facility:FacilityPart) to a facility:FacilityPart" ;
+                         rdfs:comment "A property relating a facility:SpatialZone (especially a facility:Facility or a facility:FacilityPart) to a facility:FacilityPart" ;
                          rdfs:label "has facility part" .
 
 

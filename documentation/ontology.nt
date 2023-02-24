@@ -37,10 +37,16 @@
 # #################################################################
 # 
 # 
+# https://cogito.iot.linkeddata.es/def/facility#belongToSpatialZone
+<https://cogito.iot.linkeddata.es/def/facility#belongToSpatialZone> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://cogito.iot.linkeddata.es/def/facility#belongToSpatialZone> <http://www.w3.org/2002/07/owl#inverseOf> <https://w3id.org/bot#hasElement> .
+<https://cogito.iot.linkeddata.es/def/facility#belongToSpatialZone> <http://www.w3.org/2000/01/rdf-schema#comment> "A property relating an entity, especially a facility:Element to a facility:SpatialZone" .
+<https://cogito.iot.linkeddata.es/def/facility#belongToSpatialZone> <http://www.w3.org/2000/01/rdf-schema#label> "belongs to spatial zone" .
+# 
 # https://cogito.iot.linkeddata.es/def/facility#hasFacility
 <https://cogito.iot.linkeddata.es/def/facility#hasFacility> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cogito.iot.linkeddata.es/def/facility#hasFacility> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://w3id.org/bot#containsZone> .
-<https://cogito.iot.linkeddata.es/def/facility#hasFacility> <http://www.w3.org/2000/01/rdf-schema#comment> "A property relating a facility:Zone (especially a facility:Site) to a facility:Facility" .
+<https://cogito.iot.linkeddata.es/def/facility#hasFacility> <http://www.w3.org/2000/01/rdf-schema#comment> "A property relating a facility:SpatialZone (especially a facility:Site) to a facility:Facility" .
 <https://cogito.iot.linkeddata.es/def/facility#hasFacility> <http://www.w3.org/2000/01/rdf-schema#label> "has facility" .
 # 
 # https://cogito.iot.linkeddata.es/def/facility#hasFacilityPart
@@ -48,7 +54,7 @@
 <https://cogito.iot.linkeddata.es/def/facility#hasFacilityPart> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://w3id.org/bot#containsZone> .
 <https://cogito.iot.linkeddata.es/def/facility#hasFacilityPart> <http://www.w3.org/2000/01/rdf-schema#domain> <https://cogito.iot.linkeddata.es/def/facility#SpatialZone> .
 <https://cogito.iot.linkeddata.es/def/facility#hasFacilityPart> <http://www.w3.org/2000/01/rdf-schema#range> <https://cogito.iot.linkeddata.es/def/facility#FacilityPart> .
-<https://cogito.iot.linkeddata.es/def/facility#hasFacilityPart> <http://www.w3.org/2000/01/rdf-schema#comment> "A property relating a facility:Zone (especially a facility:Facility or a facility:FacilityPart) to a facility:FacilityPart" .
+<https://cogito.iot.linkeddata.es/def/facility#hasFacilityPart> <http://www.w3.org/2000/01/rdf-schema#comment> "A property relating a facility:SpatialZone (especially a facility:Facility or a facility:FacilityPart) to a facility:FacilityPart" .
 <https://cogito.iot.linkeddata.es/def/facility#hasFacilityPart> <http://www.w3.org/2000/01/rdf-schema#label> "has facility part" .
 # 
 # https://cogito.iot.linkeddata.es/def/facility#hasSubElement

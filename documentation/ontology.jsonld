@@ -241,10 +241,22 @@
     "@id" : "https://w3id.org/bot#Storey"
   } ]
 }, {
+  "@id" : "https://cogito.iot.linkeddata.es/def/facility#belongToSpatialZone",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "A property relating an entity, especially a facility:Element to a facility:SpatialZone"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "belongs to spatial zone"
+  } ],
+  "http://www.w3.org/2002/07/owl#inverseOf" : [ {
+    "@id" : "https://w3id.org/bot#hasElement"
+  } ]
+}, {
   "@id" : "https://cogito.iot.linkeddata.es/def/facility#hasFacility",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
   "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
-    "@value" : "A property relating a facility:Zone (especially a facility:Site) to a facility:Facility"
+    "@value" : "A property relating a facility:SpatialZone (especially a facility:Site) to a facility:Facility"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
     "@value" : "has facility"
@@ -256,7 +268,7 @@
   "@id" : "https://cogito.iot.linkeddata.es/def/facility#hasFacilityPart",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
   "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
-    "@value" : "A property relating a facility:Zone (especially a facility:Facility or a facility:FacilityPart) to a facility:FacilityPart"
+    "@value" : "A property relating a facility:SpatialZone (especially a facility:Facility or a facility:FacilityPart) to a facility:FacilityPart"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
     "@id" : "https://cogito.iot.linkeddata.es/def/facility#SpatialZone"
