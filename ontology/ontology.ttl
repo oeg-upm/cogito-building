@@ -21,7 +21,7 @@
                                                   <http://purl.org/dc/elements/1.1/description> "The COGITO Facility ontology aims at modelling facilities in the construction domain." ;
                                                   <http://purl.org/dc/elements/1.1/title> "Facility Ontology" ;
                                                   dcterms:license <http://purl.org/NET/rdflicense/cc-by4.0> ;
-                                                  owl:versionInfo "0.10.0" .
+                                                  owl:versionInfo "0.11.0" .
 
 #################################################################
 #    Annotation properties
@@ -120,7 +120,7 @@ bot:hasElement rdf:type owl:ObjectProperty ;
                rdfs:domain bot:Zone ;
                rdfs:range facility:Element ;
                rdfs:isDefinedBy bot: ;
-               rdfs:label "has element" .
+               rdfs:label "contains element" .
 
 
 ###  https://w3id.org/bot#hasSpace
@@ -163,10 +163,22 @@ dcterms:title rdf:type owl:DatatypeProperty ;
               rdfs:label "title" .
 
 
+###  https://cogito.iot.linkeddata.es/def/facility#codeUniclassElement
+facility:codeUniclassElement rdf:type owl:DatatypeProperty ;
+                             rdfs:comment "Property that refers to the Uniclass code corresponding to the element" ;
+                             rdfs:label "code Uniclass element" .
+
+
+###  https://cogito.iot.linkeddata.es/def/facility#ifcType
+facility:ifcType rdf:type owl:DatatypeProperty ;
+                 rdfs:comment "Property that refers to the IFC type correspondign to the element" ;
+                 rdfs:label "IFC type" .
+
+
 ###  https://cogito.iot.linkeddata.es/def/facility#material
 facility:material rdf:type owl:DatatypeProperty ;
-                  rdfs:comment "Property that refers to the outside material of an entity (especially a facility:Element) and is taken into account when processing visual quality" ;
-                  rdfs:label "material" .
+                  rdfs:comment "Property that refers to the outside material of an entity (especially a facility:Element) and is taken into account when processing visual quality. The corresponding Uniclass code is used" ;
+                  rdfs:label "code Uniclass material" .
 
 
 #################################################################
