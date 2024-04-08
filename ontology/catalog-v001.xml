@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <uri id="Imports Wizard Entry" name="https://pi.pauwel.be/voc/buildingelement" uri="https://pi.pauwel.be/voc/buildingelement/ontology.xml"/>
-    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base=""/>
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1711734623842" name="duplicate:https://cogito.iot.linkeddata.es/def/facility" uri="ontology2.ttl"/>
+        <uri id="Automatically generated entry, Timestamp=1711734623842" name="duplicate:https://cogito.iot.linkeddata.es/def/facility" uri="ontology3.ttl"/>
+        <uri id="Automatically generated entry, Timestamp=1711734623842" name="https://pi.pauwel.be/voc/buildingelement" uri="ontology.ttl"/>
+    </group>
 </catalog>

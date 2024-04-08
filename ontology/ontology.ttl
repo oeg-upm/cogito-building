@@ -1,4 +1,6 @@
 @prefix : <https://cogito.iot.linkeddata.es/def/facility#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix ns: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix beo: <https://pi.pauwel.be/voc/buildingelement#> .
 @prefix bot: <https://w3id.org/bot#> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
@@ -7,6 +9,7 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
 @prefix saref: <https://saref.etsi.org/core#> .
 @prefix s4bldg: <https://saref.etsi.org/saref4bldg#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
@@ -15,11 +18,11 @@
 
 <https://cogito.iot.linkeddata.es/def/facility#> rdf:type owl:Ontology ;
                                                   owl:imports <https://pi.pauwel.be/voc/buildingelement> ;
-                                                  <http://purl.org/dc/elements/1.1/creator> "María Poveda Villalón" ,
-                                                                                            "Raúl García Castro" ,
-                                                                                            "Socorro  Bernardos Galindo" ;
-                                                  <http://purl.org/dc/elements/1.1/description> "The COGITO Facility ontology aims at modelling facilities in the construction domain." ;
-                                                  <http://purl.org/dc/elements/1.1/title> "Facility Ontology" ;
+                                                  dc:creator "María Poveda Villalón" ,
+                                                             "Raúl García Castro" ,
+                                                             "Socorro  Bernardos Galindo" ;
+                                                  dc:description "The COGITO Facility ontology aims at modelling facilities in the construction domain." ;
+                                                  dc:title "Facility Ontology" ;
                                                   dcterms:license <http://purl.org/NET/rdflicense/cc-by4.0> ;
                                                   owl:versionInfo "0.11.0" .
 
@@ -28,15 +31,15 @@
 #################################################################
 
 ###  http://purl.org/dc/elements/1.1/creator
-<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
+dc:creator rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/description
-<http://purl.org/dc/elements/1.1/description> rdf:type owl:AnnotationProperty .
+dc:description rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/title
-<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+dc:title rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/license
@@ -47,11 +50,11 @@ dcterms:license rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
-###  https://cogito.iot.linkeddata.es/def/facility#belongToSpatialZone
-facility:belongToSpatialZone rdf:type owl:ObjectProperty ;
-                             owl:inverseOf bot:hasElement ;
-                             rdfs:comment "A property relating an entity, especially a facility:Element to a facility:SpatialZone" ;
-                             rdfs:label "belongs to spatial zone" .
+###  https://cogito.iot.linkeddata.es/def/facility#belongsToSpatialZone
+facility:belongsToSpatialZone rdf:type owl:ObjectProperty ;
+                              owl:inverseOf bot:containsElement ;
+                              rdfs:comment "A property relating an entity, especially a facility:Element to a facility:SpatialZone" ;
+                              rdfs:label "belongs to spatial zone" .
 
 
 ###  https://cogito.iot.linkeddata.es/def/facility#hasFacility
@@ -78,12 +81,6 @@ facility:hasSubElement rdf:type owl:ObjectProperty ;
                        rdfs:label "has sub-element" .
 
 
-###  https://cogito.iot.linkeddata.es/def/facility#isRelatedToSapatialZone
-facility:isRelatedToSapatialZone rdf:type owl:ObjectProperty ;
-                                 rdfs:comment "A property relating an entity (especially a facility:SpatialZone) to a facility:SpatialZone" ;
-                                 rdfs:label "is related to spatial zone" .
-
-
 ###  https://cogito.iot.linkeddata.es/def/facility#isRelatedToSite
 facility:isRelatedToSite rdf:type owl:ObjectProperty ;
                          rdfs:range facility:Site ;
@@ -91,11 +88,25 @@ facility:isRelatedToSite rdf:type owl:ObjectProperty ;
                          rdfs:label "is related to site" .
 
 
+###  https://cogito.iot.linkeddata.es/def/facility#isRelatedToSpatialZone
+facility:isRelatedToSpatialZone rdf:type owl:ObjectProperty ;
+                                rdfs:comment "A property relating an entity (especially a facility:SpatialZone) to a facility:SpatialZone" ;
+                                rdfs:label "is related to spatial zone" .
+
+
 ###  https://saref.etsi.org/saref4bldg#hasSpace
 s4bldg:hasSpace rdf:type owl:ObjectProperty ;
                 rdfs:range s4bldg:SpaceBuilding ;
                 rdfs:isDefinedBy s4bldg: ;
                 rdfs:label "has space" .
+
+
+###  https://w3id.org/bot#containsElement
+bot:containsElement rdf:type owl:ObjectProperty ;
+                    rdfs:domain bot:Zone ;
+                    rdfs:range facility:Element ;
+                    rdfs:isDefinedBy bot: ;
+                    rdfs:label "contains element" .
 
 
 ###  https://w3id.org/bot#containsZone
@@ -113,14 +124,6 @@ bot:hasBuilding rdf:type owl:ObjectProperty ;
                 rdfs:range facility:Building ;
                 rdfs:isDefinedBy bot: ;
                 rdfs:label "has building" .
-
-
-###  https://w3id.org/bot#hasElement
-bot:hasElement rdf:type owl:ObjectProperty ;
-               rdfs:domain bot:Zone ;
-               rdfs:range facility:Element ;
-               rdfs:isDefinedBy bot: ;
-               rdfs:label "contains element" .
 
 
 ###  https://w3id.org/bot#hasSpace
@@ -169,16 +172,16 @@ facility:codeUniclassElement rdf:type owl:DatatypeProperty ;
                              rdfs:label "code Uniclass element" .
 
 
+###  https://cogito.iot.linkeddata.es/def/facility#codeUniclassMaterial
+facility:codeUniclassMaterial rdf:type owl:DatatypeProperty ;
+                              rdfs:comment "Property that refers to the outside material of an entity (especially a facility:Element) and is taken into account when processing visual quality. The corresponding Uniclass code is used" ;
+                              rdfs:label "code Uniclass material" .
+
+
 ###  https://cogito.iot.linkeddata.es/def/facility#ifcType
 facility:ifcType rdf:type owl:DatatypeProperty ;
                  rdfs:comment "Property that refers to the IFC type correspondign to the element" ;
                  rdfs:label "IFC type" .
-
-
-###  https://cogito.iot.linkeddata.es/def/facility#material
-facility:material rdf:type owl:DatatypeProperty ;
-                  rdfs:comment "Property that refers to the outside material of an entity (especially a facility:Element) and is taken into account when processing visual quality. The corresponding Uniclass code is used" ;
-                  rdfs:label "code Uniclass material" .
 
 
 #################################################################
